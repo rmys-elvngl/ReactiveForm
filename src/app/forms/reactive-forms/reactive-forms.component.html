@@ -1,0 +1,110 @@
+<h2>Type1</h2>
+<div class="row">
+    <div class="col-md-8 offset-md-2"></div>
+    <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+        <div class="mb-3">
+            <label for="userName" class="form-label bosluk">UserName: </label>
+            <input class="form-control" type="text" formControlName="userName">
+        </div>
+        <br>
+        <div class="alert alert-danger *ngIf=isValidMessageShow('userName')">
+        <!-- *ngIf="loginForm.get('userName')?.invalid && loginForm.get('userName')?.dirty || loginForm.get('userName')?.touched">!-->
+            
+        <small *ngIf="loginForm.get('userName')?.errors?.['required']">Kullanıcı adı alanı ZORUNLUDUR!!!</small>
+        </div>
+        <br>
+        <div class="alert alert-info">
+            <ul>
+                <li>Valid: {{loginForm.get("userName")?.valid}}</li>
+                <li>Invalid: {{loginForm.get("userName")?.invalid}}</li>
+                <li>Errors: {{loginForm.get("userName")?.errors | json}}</li>
+                <li>Dirty: {{loginForm.get("userName")?.dirty}}</li>
+                <!-- <li>PipeLine: {{loginForm.get("userName")?.pipeLine}}</li> -->
+                <li>Touched: {{loginForm.get("userName")?.touched}}</li>
+                <li>UnTouched: {{loginForm.get("userName")?.untouched}}</li>
+                <li>Value: {{loginForm.get("userName")?.value}}</li>
+            </ul>
+        </div>
+        <br>
+        <div class="mb-3 bosluk">
+            <label for="password" class="form-label bosluk">Password:    </label>
+            <input [ngClass]="{invalidRed:isValid('password'),invalidGreen:isSuccessValid('password')}" class="form-control" type="password" formControlName="password">
+        </div>
+        <br>
+        <div class="alert alert-danger"
+        *ngIf="isValidMessageShow('password')">
+        <!-- *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.dirty || loginForm.get('password')?.touched"> -->
+        <small *ngIf="loginForm.get('userName')?.errors?.['required']">Şifre alanı ZORUNLUDUR!!!</small>
+        <small *ngIf="loginForm.get('password')?.errors?.['minLength']">Password alanı en az 4 karakter olmalıdır!!!</small>
+        </div>
+        <br>
+        <div class="alert alert-info">
+            <ul>
+                <li>Valid: {{loginForm.get("password")?.valid}}</li>
+                <li>Invalid: {{loginForm.get("password")?.invalid}}</li>
+                <li>Errors: {{loginForm.get("password")?.errors | json}}</li>
+                <li>Dirty: {{loginForm.get("password")?.dirty}}</li>
+                <!-- <li>PipeLine: {{loginForm.get("userName")?.pipeLine}}</li> -->
+                <li>Touched: {{loginForm.get("password")?.touched}}</li>
+                <li>UnTouched: {{loginForm.get("password")?.untouched}}</li>
+                <li>Value: {{loginForm.get("password")?.value}}</li>
+            </ul>
+        </div>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="rememberMe">
+            <label class="form-check-label" for="flexCheckDefault">rememberMe</label>
+        </div>
+        <br>
+        <label class="form-label" for="country">Ülke:</label>
+        <br>
+        <br>
+        <select class="form-selected" formControlName="country">
+            <option *ngFor="let item of countryMenu" value="{{item.value}}">{{item.text}} 
+                <!-- value="{{item.value}}" -->
+
+            </option>
+
+        </select>
+        <div class="alert alert-info">
+            <ul>
+                <li>Valid: {{loginForm.get("country")?.valid}}</li>
+                <li>Invalid: {{loginForm.get("country")?.invalid}}</li>
+                <li>Errors: {{loginForm.get("country")?.errors | json}}</li>
+                <li>Dirty: {{loginForm.get("country")?.dirty}}</li>
+                <!-- <li>PipeLine: {{loginForm.get("userName")?.pipeLine}}</li> -->
+                <li>Touched: {{loginForm.get("country")?.touched}}</li>
+                <li>UnTouched: {{loginForm.get("country")?.untouched}}</li>
+                <li>Value: {{loginForm.get("country")?.value}}</li>
+            </ul>
+        </div>
+        <br>
+        <div *ngFor="let item of genderMenu">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" [value]="item.value" formControlName="gender"der>
+                <label class="ng-check-label" for="flexRadioDefault">
+                    {{item.text}}
+                </label>
+            </div>
+        </div>
+        <br>
+        <label for="Birthday">Doğum Tarihi</label>
+        <input class="form-control" type="date" formControlName="BirthDay" name="Birthday">
+        <!-- burada name vermemin amacı labeldaki for adı aile uyuşsun  -->
+        <br>
+        <div class="alert alert-info">
+            <ul>
+                <li>Valid: {{loginForm.get("BirthDay")?.valid}}</li>
+                <li>Invalid: {{loginForm.get("BirthDay")?.invalid}}</li>
+                <li>Errors: {{loginForm.get("BirthDay")?.errors | json}}</li>
+                <li>Dirty: {{loginForm.get("BirthDay")?.dirty}}</li>
+                <!-- <li>PipeLine: {{loginForm.get("userName")?.pipeLine}}</li> -->
+                <li>Touched: {{loginForm.get("BirthDay")?.touched}}</li>
+                <li>UnTouched: {{loginForm.get("BirthDay")?.untouched}}</li>
+                <li>Value: {{loginForm.get("BirthDay")?.value}}</li>
+            </ul>
+        </div>
+        <button class="btn btn-primary bosluk-left" type="submit">Enter</button>
+
+    </form>
+</div>
